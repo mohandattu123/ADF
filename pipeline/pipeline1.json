@@ -27,7 +27,8 @@
 					"dataset": {
 						"referenceName": "SqlDepartmentNamesLookup",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -64,22 +65,15 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "select * from DimEmployee where DepartmentName=item().table_name",
+										"value": "select * from dbo.DimEmployee where DepartmentName = @{item().DepartmentName}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
 								"sink": {
-									"type": "DelimitedTextSink",
-									"storeSettings": {
-										"type": "AzureBlobStorageWriteSettings"
-									},
-									"formatSettings": {
-										"type": "DelimitedTextWriteSettings",
-										"quoteAllText": true,
-										"fileExtension": ".txt"
-									}
+									"type": "AzureSqlSink",
+									"tableOption": "autoCreate"
 								},
 								"enableStaging": false,
 								"translator": {
@@ -99,11 +93,11 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "DelimitedText1",
+									"referenceName": "AzureSqlTable1",
 									"type": "DatasetReference",
 									"parameters": {
-										"filename": {
-											"value": "@item().table_name",
+										"table_name": {
+											"value": "@item().DepartmentName",
 											"type": "Expression"
 										}
 									}
