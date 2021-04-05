@@ -15,6 +15,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SqlLS'"
 		},
+		"SqlServerADVLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServerADVLS'"
+		},
+		"SqlServerADVLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlServerADVLS'"
+		},
 		"SqlServerLS_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SqlServerLS'"
@@ -22,6 +30,10 @@
 		"SqlServerLS_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlServerLS'"
+		},
+		"SqlServerADVLS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "User"
 		},
 		"SqlServerLS_properties_typeProperties_userName": {
 			"type": "string",
@@ -60,11 +72,20 @@
 					"SqlLS_connectionString": {
 						"value": "[parameters('SqlLS_connectionString')]"
 					},
+					"SqlServerADVLS_connectionString": {
+						"value": "[parameters('SqlServerADVLS_connectionString')]"
+					},
+					"SqlServerADVLS_password": {
+						"value": "[parameters('SqlServerADVLS_password')]"
+					},
 					"SqlServerLS_connectionString": {
 						"value": "[parameters('SqlServerLS_connectionString')]"
 					},
 					"SqlServerLS_password": {
 						"value": "[parameters('SqlServerLS_password')]"
+					},
+					"SqlServerADVLS_properties_typeProperties_userName": {
+						"value": "[parameters('SqlServerADVLS_properties_typeProperties_userName')]"
 					},
 					"SqlServerLS_properties_typeProperties_userName": {
 						"value": "[parameters('SqlServerLS_properties_typeProperties_userName')]"
