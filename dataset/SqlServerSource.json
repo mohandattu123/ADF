@@ -1,0 +1,23 @@
+{
+	"name": "SqlServerSource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerLS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"stablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"table": {
+				"value": "@dataset().stablename",
+				"type": "Expression"
+			}
+		}
+	}
+}
