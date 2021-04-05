@@ -1,0 +1,13 @@
+{
+	"name": "LookupSQLSource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
