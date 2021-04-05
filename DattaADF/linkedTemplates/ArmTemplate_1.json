@@ -455,7 +455,7 @@
 										"source": {
 											"type": "SqlServerSource",
 											"sqlReaderQuery": {
-												"value": "select e.*, d.Name from HumanResources.Employee e,HumanResources.Department d,HumanResources.EmployeeDepartmentHistory h where e.BusinessEntityID=h.BusinessEntityID and d.DepartmentID=h.DepartmentID and d.name='@{item().name}'",
+												"value": "select e.*, d.Name from HumanResources.Employee e,HumanResources.Department d,HumanResources.EmployeeDepartmentHistory h where e.BusinessEntityID=h.BusinessEntityID and d.DepartmentID=h.DepartmentID and d.Name='@{item().Name}'",
 												"type": "Expression"
 											},
 											"queryTimeout": "02:00:00",
@@ -487,7 +487,7 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"tablename": {
-													"value": "@item().name",
+													"value": "@item().Name",
 													"type": "Expression"
 												}
 											}
