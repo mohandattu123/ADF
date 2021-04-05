@@ -356,7 +356,7 @@
 										"source": {
 											"type": "SqlServerSource",
 											"sqlReaderQuery": {
-												"value": "@select * from DimEmployee where DepartmentName=item().table_name",
+												"value": "select * from DimEmployee where DepartmentName=item().table_name",
 												"type": "Expression"
 											},
 											"queryTimeout": "02:00:00",
