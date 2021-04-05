@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "DepartmentNameTablesFromSQLServerToSQL",
 	"properties": {
 		"activities": [
 			{
@@ -65,7 +65,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "select * from dbo.DimEmployee where DepartmentName = @{item().DepartmentName}",
+										"value": "select * from dbo.DimEmployee where DepartmentName = '@{item().DepartmentName}'",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
