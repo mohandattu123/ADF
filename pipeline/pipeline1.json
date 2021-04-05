@@ -63,7 +63,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "SqlServerSource",
-									"sqlReaderQuery": "select * from DimEmployee where DepartmentName=@{tabledata}",
+									"sqlReaderQuery": {
+										"value": "@select * from DimEmployee where DepartmentName=item().table_name",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
@@ -91,13 +94,7 @@
 							"inputs": [
 								{
 									"referenceName": "SqlServerTable1",
-									"type": "DatasetReference",
-									"parameters": {
-										"tabledata": {
-											"value": "@item().table_name",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [

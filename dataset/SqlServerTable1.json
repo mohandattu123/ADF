@@ -5,11 +5,6 @@
 			"referenceName": "SqlServerLS",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"tabledata": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": [
