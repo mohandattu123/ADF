@@ -1,0 +1,21 @@
+{
+	"name": "SqlServerEmployeeSource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerLS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"tablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DimEmployee"
+		}
+	}
+}
