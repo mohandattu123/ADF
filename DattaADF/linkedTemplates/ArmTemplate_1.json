@@ -13,6 +13,32 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/SqlServerSource')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServerLS",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"stablename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {
+					"table": {
+						"value": "@dataset().stablename",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SqlServerTable1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -285,7 +311,9 @@
 				],
 				"annotations": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SqlServerSource')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
@@ -319,7 +347,8 @@
 								"referenceName": "SqlDepartmentNamesLookup",
 								"type": "DatasetReference",
 								"parameters": {}
-							}
+							},
+							"firstRowOnly": false
 						}
 					},
 					{
@@ -356,22 +385,15 @@
 										"source": {
 											"type": "SqlServerSource",
 											"sqlReaderQuery": {
-												"value": "select * from DimEmployee where DepartmentName=item().table_name",
+												"value": "select * from dbo.DimEmployee where DepartmentName = @{item().DepartmentName}",
 												"type": "Expression"
 											},
 											"queryTimeout": "02:00:00",
 											"partitionOption": "None"
 										},
 										"sink": {
-											"type": "DelimitedTextSink",
-											"storeSettings": {
-												"type": "AzureBlobStorageWriteSettings"
-											},
-											"formatSettings": {
-												"type": "DelimitedTextWriteSettings",
-												"quoteAllText": true,
-												"fileExtension": ".txt"
-											}
+											"type": "AzureSqlSink",
+											"tableOption": "autoCreate"
 										},
 										"enableStaging": false,
 										"translator": {
@@ -392,11 +414,11 @@
 									],
 									"outputs": [
 										{
-											"referenceName": "DelimitedText1",
+											"referenceName": "AzureSqlTable1",
 											"type": "DatasetReference",
 											"parameters": {
-												"filename": {
-													"value": "@item().table_name",
+												"table_name": {
+													"value": "@item().DepartmentName",
 													"type": "Expression"
 												}
 											}
