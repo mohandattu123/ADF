@@ -693,7 +693,7 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"stablename": {
-													"value": "@item().name",
+													"value": "@item().table_name",
 													"type": "Expression"
 												}
 											}
@@ -705,7 +705,7 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"filename": {
-													"value": "@concat(item().table_schema,'_',item().table_name)",
+													"value": "@item().table_name",
 													"type": "Expression"
 												}
 											}
