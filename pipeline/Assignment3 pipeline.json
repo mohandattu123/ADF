@@ -60,18 +60,18 @@
 							"userProperties": [],
 							"typeProperties": {
 								"dataflow": {
-									"referenceName": "Assignment3 Dataflow",
+									"referenceName": "Assignment3Dataflow",
 									"type": "DataFlowReference",
 									"parameters": {
 										"Color": {
-											"value": "'@{item().color}'",
+											"value": "'@{item().Color}'",
 											"type": "Expression"
 										}
 									},
 									"datasetParameters": {
 										"sink1": {
 											"filename": {
-												"value": "@item().color",
+												"value": "@item().Color",
 												"type": "Expression"
 											}
 										}
