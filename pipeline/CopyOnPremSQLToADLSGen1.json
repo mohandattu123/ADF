@@ -1,45 +1,6 @@
 {
 	"name": "CopyOnPremSQLToADLSGen1",
 	"properties": {
-		"activities": [
-			{
-				"name": "Copy data1",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "SqlServerSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"enableStaging": false
-				},
-				"inputs": [
-					{
-						"referenceName": "SqlServerTable4",
-						"type": "DatasetReference",
-						"parameters": {
-							"Tablename": {
-								"value": "@pipeline().parameters.Tablename",
-								"type": "Expression"
-							},
-							"Schemaname": {
-								"value": "@pipeline().parameters.Schemaname",
-								"type": "Expression"
-							}
-						}
-					}
-				]
-			}
-		],
 		"parameters": {
 			"Tablename": {
 				"type": "string",
