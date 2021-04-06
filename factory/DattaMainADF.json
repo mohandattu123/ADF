@@ -1,0 +1,9 @@
+{
+	"name": "DattaMainADF",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ade807af-3cdb-4cb2-99a7-8c3600b3fc48",
+		"tenantId": "6b94838a-a27a-4f8c-ae93-a0ee1dacb27e"
+	}
+}
