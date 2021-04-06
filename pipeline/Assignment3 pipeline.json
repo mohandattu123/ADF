@@ -64,7 +64,7 @@
 									"type": "DataFlowReference",
 									"parameters": {
 										"Color": {
-											"value": "@item().name",
+											"value": "'@{item().name}'",
 											"type": "Expression"
 										}
 									},
