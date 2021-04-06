@@ -35,7 +35,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SqlServer",
+						"referenceName": "SqlServerSourceDataset",
 						"type": "DatasetReference",
 						"parameters": {
 							"Servername": "DESKTOP-VBNFNPC\\DATTA",

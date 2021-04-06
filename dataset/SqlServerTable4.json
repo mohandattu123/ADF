@@ -3,10 +3,34 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "OnPremSqlServerLS",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"servername": "DESKTOP-VBNFNPC\\DATTA",
+				"databasename": "AdventureWorks2012",
+				"username": "User",
+				"password": "training123$"
+			}
+		},
+		"parameters": {
+			"Tablename": {
+				"type": "string"
+			},
+			"Schemaname": {
+				"type": "string"
+			}
 		},
 		"annotations": [],
 		"type": "SqlServerTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().Schemaname",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().Tablename",
+				"type": "Expression"
+			}
+		}
 	}
 }

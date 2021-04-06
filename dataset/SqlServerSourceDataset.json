@@ -1,5 +1,5 @@
 {
-	"name": "SqlServer",
+	"name": "SqlServerSourceDataset",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "SqlServer1",

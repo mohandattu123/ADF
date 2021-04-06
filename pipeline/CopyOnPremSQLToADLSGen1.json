@@ -25,11 +25,31 @@
 				"inputs": [
 					{
 						"referenceName": "SqlServerTable4",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"Tablename": {
+								"value": "@pipeline().parameters.Tablename",
+								"type": "Expression"
+							},
+							"Schemaname": {
+								"value": "@pipeline().parameters.Schemaname",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
 		],
+		"parameters": {
+			"Tablename": {
+				"type": "string",
+				"defaultValue": "Product"
+			},
+			"Schemaname": {
+				"type": "string",
+				"defaultValue": "Production"
+			}
+		},
 		"annotations": []
 	}
 }

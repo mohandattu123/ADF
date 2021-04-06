@@ -2,14 +2,14 @@
 	"name": "SqlServerDestinationDataset",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SqlServer2",
+			"referenceName": "SQLMainLS",
 			"type": "LinkedServiceReference",
 			"parameters": {
-				"ServerName": {
+				"Servername": {
 					"value": "@dataset().Servername",
 					"type": "Expression"
 				},
-				"DataBaseName": {
+				"Databasename": {
 					"value": "@dataset().DatabaseName",
 					"type": "Expression"
 				},
