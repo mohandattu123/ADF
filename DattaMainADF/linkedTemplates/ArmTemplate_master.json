@@ -78,15 +78,6 @@
 					},
 					"SqlLS_connectionString": {
 						"value": "[parameters('SqlLS_connectionString')]"
-					},
-					"SqlServerADVLS_connectionString": {
-						"value": "[parameters('SqlServerADVLS_connectionString')]"
-					},
-					"SqlServerADVLS_password": {
-						"value": "[parameters('SqlServerADVLS_password')]"
-					},
-					"SqlServerADVLS_properties_typeProperties_userName": {
-						"value": "[parameters('SqlServerADVLS_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -106,11 +97,20 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"SqlServerADVLS_connectionString": {
+						"value": "[parameters('SqlServerADVLS_connectionString')]"
+					},
+					"SqlServerADVLS_password": {
+						"value": "[parameters('SqlServerADVLS_password')]"
+					},
 					"SqlServerLS_connectionString": {
 						"value": "[parameters('SqlServerLS_connectionString')]"
 					},
 					"SqlServerLS_password": {
 						"value": "[parameters('SqlServerLS_password')]"
+					},
+					"SqlServerADVLS_properties_typeProperties_userName": {
+						"value": "[parameters('SqlServerADVLS_properties_typeProperties_userName')]"
 					},
 					"SqlServerLS_properties_typeProperties_userName": {
 						"value": "[parameters('SqlServerLS_properties_typeProperties_userName')]"
