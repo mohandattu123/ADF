@@ -1,0 +1,70 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "DattaMainADF"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/SCD Product Dataflow')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "SampleDBProductSourceDataset",
+								"type": "DatasetReference"
+							},
+							"name": "SalesLTProductSource"
+						},
+						{
+							"dataset": {
+								"referenceName": "TrailDBProductSourceDataset",
+								"type": "DatasetReference"
+							},
+							"name": "DimProductSource"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "AzureSqlTable3",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "DerivedColumn1"
+						},
+						{
+							"name": "Exists1"
+						},
+						{
+							"name": "Lookup1"
+						},
+						{
+							"name": "DerivedColumn2"
+						},
+						{
+							"name": "AlterRow1"
+						}
+					],
+					"script": "source(output(\n\t\tProductID as integer,\n\t\tName as string,\n\t\tProductNumber as string,\n\t\tColor as string,\n\t\tStandardCost as decimal(19,4),\n\t\tListPrice as decimal(19,4),\n\t\tSize as string,\n\t\tWeight as decimal(8,2),\n\t\tProductCategoryID as integer,\n\t\tProductModelID as integer,\n\t\tSellStartDate as timestamp,\n\t\tSellEndDate as timestamp,\n\t\tDiscontinuedDate as timestamp,\n\t\tThumbNailPhoto as binary,\n\t\tThumbnailPhotoFileName as string,\n\t\trowguid as string,\n\t\tModifiedDate as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> SalesLTProductSource\nsource(output(\n\t\tProductID as integer,\n\t\tName as string,\n\t\tProductNumber as string,\n\t\tColor as string,\n\t\tStandardCost as decimal(18,0),\n\t\tListPrice as decimal(18,0),\n\t\tSize as integer,\n\t\tWeight as decimal(18,0),\n\t\tProductCategoryID as integer,\n\t\tProductModelID as integer,\n\t\tSellStartDate as date,\n\t\tSellEndDate as date,\n\t\tDiscontinuedDate as date,\n\t\tThumbNailPhoto as string,\n\t\trowguid as string,\n\t\tModifiedDate as date,\n\t\tHashKey as string,\n\t\tInsertedDate as timestamp,\n\t\tUpdatedDate as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> DimProductSource\nSalesLTProductSource derive(CreateHash = sha1(Name+ProductNumber+Color)) ~> DerivedColumn1\nDerivedColumn1, DimProductSource exists(CreateHash == HashKey,\n\tnegate:true,\n\tbroadcast: 'auto')~> Exists1\nExists1, DimProductSource lookup(SalesLTProductSource@ProductID == DimProductSource@ProductID,\n\tmultiple: false,\n\tpickup: 'any',\n\tbroadcast: 'auto')~> Lookup1\nLookup1 derive(InsertedDate = iif(isNull(InsertedDate), currentTimestamp(), InsertedDate),\n\t\tUpdatedDate = currentTimestamp()) ~> DerivedColumn2\nDerivedColumn2 alterRow(upsertIf(true())) ~> AlterRow1\nAlterRow1 sink(input(\n\t\tProductID as integer,\n\t\tName as string,\n\t\tProductNumber as string,\n\t\tColor as string,\n\t\tStandardCost as decimal(18,0),\n\t\tListPrice as decimal(18,0),\n\t\tSize as integer,\n\t\tWeight as decimal(18,0),\n\t\tProductCategoryID as integer,\n\t\tProductModelID as integer,\n\t\tSellStartDate as date,\n\t\tSellEndDate as date,\n\t\tDiscontinuedDate as date,\n\t\tThumbNailPhoto as string,\n\t\trowguid as string,\n\t\tModifiedDate as date,\n\t\tHashKey as string,\n\t\tInsertedDate as timestamp,\n\t\tUpdatedDate as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:false,\n\tupdateable:false,\n\tupsertable:true,\n\tkeys:['ProductID'],\n\tformat: 'table',\n\tmapColumn(\n\t\tProductID = SalesLTProductSource@ProductID,\n\t\tName = SalesLTProductSource@Name,\n\t\tProductNumber = SalesLTProductSource@ProductNumber,\n\t\tColor = SalesLTProductSource@Color,\n\t\tStandardCost = SalesLTProductSource@StandardCost,\n\t\tListPrice = SalesLTProductSource@ListPrice,\n\t\tSize = SalesLTProductSource@Size,\n\t\tWeight = SalesLTProductSource@Weight,\n\t\tProductCategoryID = SalesLTProductSource@ProductCategoryID,\n\t\tProductModelID = SalesLTProductSource@ProductModelID,\n\t\tSellStartDate = SalesLTProductSource@SellStartDate,\n\t\tSellEndDate = DimProductSource@SellEndDate,\n\t\tDiscontinuedDate = DimProductSource@DiscontinuedDate,\n\t\tThumbNailPhoto = DimProductSource@ThumbNailPhoto,\n\t\trowguid = SalesLTProductSource@rowguid,\n\t\tModifiedDate = SalesLTProductSource@ModifiedDate,\n\t\tHashKey = CreateHash,\n\t\tInsertedDate,\n\t\tUpdatedDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
