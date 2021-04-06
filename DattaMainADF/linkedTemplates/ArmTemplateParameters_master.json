@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "DattaMainADF"
+		},
+		"BlobLS_connectionString": {
+			"value": ""
+		},
+		"SQLTrailDBLS_connectionString": {
+			"value": ""
+		},
+		"SqlLS_connectionString": {
+			"value": ""
+		},
+		"SqlServerADVLS_connectionString": {
+			"value": ""
+		},
+		"SqlServerADVLS_password": {
+			"value": ""
+		},
+		"SqlServerLS_connectionString": {
+			"value": ""
+		},
+		"SqlServerLS_password": {
+			"value": ""
+		},
+		"SqlServerADVLS_properties_typeProperties_userName": {
+			"value": "User"
+		},
+		"SqlServerLS_properties_typeProperties_userName": {
+			"value": "User"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
