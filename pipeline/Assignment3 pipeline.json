@@ -64,14 +64,14 @@
 									"type": "DataFlowReference",
 									"parameters": {
 										"Color": {
-											"value": "'@{item().Color}'",
+											"value": "'@{item().color}'",
 											"type": "Expression"
 										}
 									},
 									"datasetParameters": {
 										"sink1": {
 											"filename": {
-												"value": "@item().Color",
+												"value": "@item().color",
 												"type": "Expression"
 											}
 										}
