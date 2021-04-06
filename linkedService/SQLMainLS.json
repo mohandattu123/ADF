@@ -1,0 +1,25 @@
+{
+	"name": "SQLMainLS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"Servername": {
+				"type": "String"
+			},
+			"Databasename": {
+				"type": "String"
+			},
+			"Username": {
+				"type": "String"
+			},
+			"Password": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Data Source=@{linkedService().Servername};Initial Catalog=@{linkedService().Databasename};User ID=@{linkedService().Username};Password=@{linkedService().Password}"
+		}
+	}
+}
