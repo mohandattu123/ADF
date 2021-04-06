@@ -1,0 +1,86 @@
+{
+	"name": "CopyOnPremiseSQLServerToSQLServer",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy  Tables OnPremise To SQL Server",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SqlServerSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServer",
+						"type": "DatasetReference",
+						"parameters": {
+							"Servername": "DESKTOP-VBNFNPC\\DATTA",
+							"DatabaseName": "AdventureWorks2012",
+							"Username": "User",
+							"Password": "timeparadox",
+							"TableName": {
+								"value": "@pipeline().parameters.Tablename",
+								"type": "Expression"
+							},
+							"SchemaName": {
+								"value": "@pipeline().parameters.Schemaname",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SqlServerDestinationDataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"Servername": "dattaserver.database.windows.net",
+							"DatabaseName": "TrailDB",
+							"Username": "sqladmin",
+							"Password": "training123$",
+							"TableName": {
+								"value": "@pipeline().parameters.Tablename",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"Tablename": {
+				"type": "string",
+				"defaultValue": "Person"
+			},
+			"Schemaname": {
+				"type": "string",
+				"defaultValue": "Person"
+			}
+		},
+		"annotations": []
+	}
+}
