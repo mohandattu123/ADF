@@ -19,7 +19,9 @@
 		"annotations": [],
 		"type": "SqlServer",
 		"typeProperties": {
-			"connectionString": "Integrated Security=False;Data Source=@{linkedService().ServerName};Initial Catalog=@{linkedService().DataBaseName};User ID=@{linkedService().Username};Password=@{linkedService().Password}"
+			"connectionString": "Integrated Security=True;Data Source=@{linkedService().ServerName};Initial Catalog=@{linkedService().DataBaseName}",
+			"userName": "@{linkedService().Username}",
+			"password": "@{linkedService().Password}"
 		},
 		"connectVia": {
 			"referenceName": "OnPremIntegrationRuntime",
