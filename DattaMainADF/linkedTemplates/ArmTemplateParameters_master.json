@@ -8,10 +8,22 @@
 		"BlobLS_connectionString": {
 			"value": ""
 		},
+		"OnPremSqlServerLS_connectionString": {
+			"value": ""
+		},
+		"SQLMainLS_connectionString": {
+			"value": ""
+		},
 		"SQLTrailDBLS_connectionString": {
 			"value": ""
 		},
 		"SqlLS_connectionString": {
+			"value": ""
+		},
+		"SqlServer1_connectionString": {
+			"value": ""
+		},
+		"SqlServer2_connectionString": {
 			"value": ""
 		},
 		"SqlServerADVLS_connectionString": {
@@ -25,6 +37,9 @@
 		},
 		"SqlServerLS_password": {
 			"value": ""
+		},
+		"SqlServer1_properties_typeProperties_userName": {
+			"value": "@{linkedService().Username}"
 		},
 		"SqlServerADVLS_properties_typeProperties_userName": {
 			"value": "User"
