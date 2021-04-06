@@ -58,7 +58,7 @@
 						"referenceName": "SqlServerDestinationDataset",
 						"type": "DatasetReference",
 						"parameters": {
-							"Servername": "dattasqlserver",
+							"Servername": "dattaserver",
 							"DatabaseName": "TrailDB",
 							"Username": "sqladmin",
 							"Password": "training123$",
