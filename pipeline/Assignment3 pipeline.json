@@ -69,6 +69,12 @@
 										}
 									},
 									"datasetParameters": {
+										"source": {
+											"tablename": {
+												"value": "@item().Color",
+												"type": "Expression"
+											}
+										},
 										"sink1": {
 											"filename": {
 												"value": "@item().Color",
