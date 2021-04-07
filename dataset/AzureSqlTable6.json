@@ -1,5 +1,5 @@
 {
-	"name": "AzureSqlTable5",
+	"name": "AzureSqlTable6",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "SQLLS2",
@@ -9,8 +9,8 @@
 		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "SalesLT",
-			"table": "Customer"
+			"schema": "dbo",
+			"table": "GroupByExample"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

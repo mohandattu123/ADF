@@ -1,12 +1,12 @@
 {
-	"name": "SqlServerTable2",
+	"name": "AzureSqlTable7",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SqlServerLS2",
+			"referenceName": "SQLLS2",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
-		"type": "SqlServerTable",
+		"type": "AzureSqlTable",
 		"schema": []
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

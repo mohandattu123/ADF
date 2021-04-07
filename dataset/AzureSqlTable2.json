@@ -2,7 +2,7 @@
 	"name": "AzureSqlTable2",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SqlLS",
+			"referenceName": "SQLLS2",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -19,5 +19,6 @@
 				"type": "Expression"
 			}
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

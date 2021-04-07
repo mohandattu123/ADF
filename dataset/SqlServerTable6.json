@@ -1,13 +1,24 @@
 {
-	"name": "SqlServerTable2",
+	"name": "SqlServerTable6",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "SqlServerLS2",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"tablename": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "SqlServerTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"table": {
+				"value": "@dataset().tablename",
+				"type": "Expression"
+			}
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

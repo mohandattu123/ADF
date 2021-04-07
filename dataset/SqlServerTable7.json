@@ -1,15 +1,9 @@
 {
-	"name": "SqlServerTable1",
+	"name": "SqlServerTable7",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SqlServerLS",
-			"type": "LinkedServiceReference",
-			"parameters": {
-				"servername": "DESKTOP-VBNFNPC\\DATTA",
-				"databasename": "AdventureWorksDW2012",
-				"username": "User",
-				"password": "timeparadox"
-			}
+			"referenceName": "SqlServerLS2",
+			"type": "LinkedServiceReference"
 		},
 		"parameters": {
 			"tablename": {
@@ -20,6 +14,7 @@
 		"type": "SqlServerTable",
 		"schema": [],
 		"typeProperties": {
+			"schema": "dbo",
 			"table": {
 				"value": "@dataset().tablename",
 				"type": "Expression"

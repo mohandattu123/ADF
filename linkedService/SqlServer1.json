@@ -3,25 +3,25 @@
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"parameters": {
-			"ServerName": {
+			"servername": {
 				"type": "String"
 			},
-			"DataBaseName": {
+			"databasename": {
 				"type": "String"
 			},
-			"Username": {
+			"username": {
 				"type": "String"
 			},
-			"Password": {
+			"password": {
 				"type": "String"
 			}
 		},
 		"annotations": [],
 		"type": "SqlServer",
 		"typeProperties": {
-			"connectionString": "Integrated Security=True;Data Source=@{linkedService().ServerName};Initial Catalog=@{linkedService().DataBaseName}",
-			"userName": "@{linkedService().Username}",
-			"password": "@{linkedService().Password}"
+			"connectionString": "Integrated Security=True;Data Source=@{linkedService().servername};Initial Catalog=@{linkedService().databasename}",
+			"userName": "@{linkedService().username}",
+			"password": "@{linkedService().password}"
 		},
 		"connectVia": {
 			"referenceName": "OnPremIntegrationRuntime",

@@ -1,24 +1,26 @@
 {
-	"name": "AzureSqlTable4",
+	"name": "ChangeTrackingDataset",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "SQLLS2",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"tablename": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [],
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "SYS_CHANGE_VERSION",
+				"type": "bigint",
+				"precision": 19
+			}
+		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": {
-				"value": "@dataset().tablename",
-				"type": "Expression"
-			}
+			"table": "table_store_ChangeTracking_version"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

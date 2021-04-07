@@ -2,11 +2,16 @@
 	"name": "SqlServerTable3",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SqlServerADVLS",
+			"referenceName": "SqlServerLS2",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "SqlServerTable",
-		"schema": []
-	}
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DimProduct"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

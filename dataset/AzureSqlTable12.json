@@ -1,15 +1,9 @@
 {
-	"name": "SqlServerTable1",
+	"name": "AzureSqlTable12",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SqlServerLS",
-			"type": "LinkedServiceReference",
-			"parameters": {
-				"servername": "DESKTOP-VBNFNPC\\DATTA",
-				"databasename": "AdventureWorksDW2012",
-				"username": "User",
-				"password": "timeparadox"
-			}
+			"referenceName": "SqlLS",
+			"type": "LinkedServiceReference"
 		},
 		"parameters": {
 			"tablename": {
@@ -17,9 +11,10 @@
 			}
 		},
 		"annotations": [],
-		"type": "SqlServerTable",
+		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
+			"schema": "dbo",
 			"table": {
 				"value": "@dataset().tablename",
 				"type": "Expression"

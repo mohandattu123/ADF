@@ -3,10 +3,16 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "SqlLS",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"username": "sqladmin",
+				"password": "training123$",
+				"databasename": "SampleDB",
+				"servername": "dattaserver.database.windows.net"
+			}
 		},
 		"parameters": {
-			"table_name": {
+			"tablename": {
 				"type": "string"
 			}
 		},
@@ -15,9 +21,10 @@
 		"schema": [],
 		"typeProperties": {
 			"table": {
-				"value": "@dataset().table_name",
+				"value": "@dataset().tablename",
 				"type": "Expression"
 			}
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

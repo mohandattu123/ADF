@@ -1,8 +1,8 @@
 {
-	"name": "SqlServerTable1",
+	"name": "SqlServerTable8",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SqlServerLS",
+			"referenceName": "SqlServer1",
 			"type": "LinkedServiceReference",
 			"parameters": {
 				"servername": "DESKTOP-VBNFNPC\\DATTA",

@@ -1,25 +1,24 @@
 {
-	"name": "DelimitedText1",
+	"name": "SinkDataset",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ADLSGen2LS",
+			"referenceName": "BlobLS",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"filename": {
-				"type": "string"
-			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
+				"type": "AzureBlobStorageLocation",
 				"fileName": {
-					"value": "@dataset().filename",
+					"value": "@CONCAT('Incremental-', utcnow(), '.txt')",
 					"type": "Expression"
 				},
-				"fileSystem": "output"
+				"folderPath": {
+					"value": "@formatDateTime(utcnow(),'yyyy/MM')",
+					"type": "Expression"
+				},
+				"container": "output"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

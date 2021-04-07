@@ -1,0 +1,59 @@
+{
+	"name": "Assignment6Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "select CONCAT(CONCAT(c.FirstName,' ',c.LastName),' bought ',p.Name,' from ',c.SalesPerson,' worth ', s.LineTotal) as Information from [SalesLT].[Customer] c, [SalesLT].[Product] p, [SalesLT].[SalesOrderDetail] s, [SalesLT].[SalesOrderHeader] h where p.ProductID=s.ProductID and c.CustomerID=h.CustomerId and s.SalesOrderId=h.SalesOrderID",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "AzureSqlTable7",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Json1",
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": "Information"
+						}
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-04-07T06:49:41Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,8 +1,8 @@
 {
-	"name": "DelimitedText1",
+	"name": "DelimitedText2",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ADLSGen2LS",
+			"referenceName": "AzureDataLakeStore1",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -14,12 +14,12 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
+				"type": "AzureDataLakeStoreLocation",
 				"fileName": {
 					"value": "@dataset().filename",
 					"type": "Expression"
 				},
-				"fileSystem": "output"
+				"folderPath": "output"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

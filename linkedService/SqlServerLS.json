@@ -2,12 +2,26 @@
 	"name": "SqlServerLS",
 	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
+		"parameters": {
+			"servername": {
+				"type": "String"
+			},
+			"databasename": {
+				"type": "String"
+			},
+			"username": {
+				"type": "String"
+			},
+			"password": {
+				"type": "String"
+			}
+		},
 		"annotations": [],
 		"type": "SqlServer",
 		"typeProperties": {
-			"connectionString": "integrated security=True;data source=DESKTOP-VBNFNPC\\DATTA;initial catalog=AdventureWorksDW2012",
-			"userName": "User",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJkZmQxODZhNi1lMjE1LTQxOGQtOWFmYS0wYTVmNWQ3MjgzOTQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"connectionString": "Integrated Security=True;Data Source=@{linkedService().servername};Initial Catalog=@{linkedService().databasename}",
+			"userName": "@{linkedService().username}",
+			"password": "@{linkedService().password}"
 		},
 		"connectVia": {
 			"referenceName": "OnPremIntegrationRuntime",
